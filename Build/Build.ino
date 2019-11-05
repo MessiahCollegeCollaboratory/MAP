@@ -90,7 +90,9 @@ MuscleMotor::MuscleMotor()
 
 void MuscleMotor::setThreshold(int32_t threshold)
 {
-  this->threshold = threshold;
+  if(threshold < MAX_FLEX_THRESHOLD){
+    this->threshold = threshold;
+  }
 }
 
 int32_t MuscleMotor::getThreshold(){
@@ -268,6 +270,6 @@ void loop() {
   // This is important to save battery. 
   delay(LOOP_DELAY);
 
-  Print->p(HandEmg->getEmgValue());
+  //Print->p(HandEmg->getEmgValue());
   Print->pln(mm->getThreshold());
 }

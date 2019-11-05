@@ -11,6 +11,7 @@ const int FSR_THRESHOLD = 600;
 const int LOOP_DELAY = 25;
 const int LED_GREEN_THRESHOLD = 818; // 4V*1023/5V
 const int LED_RED_THRESHOLD = 655; // 3.2V*1023/5V
+const int MAX_FLEX_THRESHOLD = 2000;
 
 /* --------- PINS ---------- */
 // Analog Pins
