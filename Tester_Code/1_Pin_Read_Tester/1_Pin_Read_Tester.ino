@@ -1,6 +1,6 @@
 /* All purpose tester for quick analog or digital read and plotter */
 
-int pin = A5;
+int pin = A4;
 int value;
 
 void setup() {

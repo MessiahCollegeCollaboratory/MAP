@@ -8,7 +8,7 @@ extern const int EMG_ARRAY_LENGTH;
 extern const int TIME_OF_FLEX;
 extern const int FSR_THRESHOLD;
 extern const int LOOP_DELAY;
-extern const int LED_GREEN_THRESHOLD;
+extern const int LED_BLUE_THRESHOLD;
 extern const int LED_RED_THRESHOLD;
 extern const int MAX_FLEX_THRESHOLD;
 

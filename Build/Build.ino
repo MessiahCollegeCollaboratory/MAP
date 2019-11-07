@@ -199,17 +199,17 @@ void MuscleMotor::indicateBatteryLevel() {
   int batLevel = analogRead(BatteryLevelRead);
 
   // This is be true if Battery is charged within working capacity
-  if((batLevel > LED_GREEN_THRESHOLD)/* && (bat1Level > greenThreshold)*/) {
+  if((batLevel > LED_BLUE_THRESHOLD)/* && (bat1Level > greenThreshold)*/) {
     digitalWrite(BatteryLevelLEDR, LOW);
-    digitalWrite(BatteryLevelLEDB, LOW);
-    digitalWrite(BatteryLevelLEDG, HIGH);
+    digitalWrite(BatteryLevelLEDB, HIGH);
+    digitalWrite(BatteryLevelLEDG, LOW);
   }
 
   // This is true if battery is beginning to run low
   else if((batLevel > LED_RED_THRESHOLD)/* && (bat1Level > redThreshold)*/) {
     digitalWrite(BatteryLevelLEDR, LOW);
-    digitalWrite(BatteryLevelLEDG, LOW);
-    digitalWrite(BatteryLevelLEDB, HIGH);
+    digitalWrite(BatteryLevelLEDG, HIGH);
+    digitalWrite(BatteryLevelLEDB, LOW);
   }
 
   // This is true if battery is too low to run the hand
@@ -270,6 +270,6 @@ void loop() {
   // This is important to save battery. 
   delay(LOOP_DELAY);
 
-  //Print->p(HandEmg->getEmgValue());
+  Print->p(HandEmg->getEmgValue());
   Print->pln(mm->getThreshold());
 }
