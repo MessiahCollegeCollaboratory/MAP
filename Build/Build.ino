@@ -90,9 +90,7 @@ MuscleMotor::MuscleMotor()
 
 void MuscleMotor::setThreshold(int32_t threshold)
 {
-  if(threshold < MAX_FLEX_THRESHOLD){
-    this->threshold = threshold;
-  }
+  this->threshold = threshold;
 }
 
 int32_t MuscleMotor::getThreshold(){
