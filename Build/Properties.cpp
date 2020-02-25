@@ -9,9 +9,8 @@ const int EMG_ARRAY_LENGTH = 25;
 const int TIME_OF_FLEX = 700;
 const int FSR_THRESHOLD = 600;
 const int LOOP_DELAY = 25;
-const int LED_BLUE_THRESHOLD = 282; // 4V*1023/5V
-const int LED_RED_THRESHOLD = 215; // 3.2V*1023/5V
-const int MAX_FLEX_THRESHOLD = 245;
+const int LED_BLUE_THRESHOLD = 265; // 4V*1023/5V
+const int LED_RED_THRESHOLD = 234; // 3.2V*1023/5V
 
 /* --------- PINS ---------- */
 // Analog Pins

@@ -10,7 +10,6 @@ extern const int FSR_THRESHOLD;
 extern const int LOOP_DELAY;
 extern const int LED_BLUE_THRESHOLD;
 extern const int LED_RED_THRESHOLD;
-extern const int MAX_FLEX_THRESHOLD;
 
 /* --------- PINS ---------- */
 // Analog Pins

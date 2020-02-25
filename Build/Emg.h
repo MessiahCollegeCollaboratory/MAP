@@ -8,4 +8,5 @@ class Emg {
     int32_t emgRead();
     void emgCal();
     int32_t getEmgValue();
+    int32_t getEmgAvg();
 };

@@ -16,6 +16,7 @@ int32_t Emg::emgRead(){
 }
 
 void Emg::emgCal(){
+  delay(500);
   int32_t emgAvg = 0;
   
   for(int i = 0; i < 25; i++){
@@ -29,4 +30,8 @@ void Emg::emgCal(){
 
 int32_t Emg::getEmgValue(){
   return (this->emgValue - this->emgAvg);
+}
+
+int32_t Emg::getEmgAvg(){
+  return this->emgAvg;
 }
