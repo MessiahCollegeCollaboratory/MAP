@@ -49,5 +49,5 @@ void loop() {
 
   moveMotors();
   delay(2000);
-
+  Serial.println("run");
 }
