@@ -44,6 +44,8 @@ class MuscleMotor {
     bool currentGrip;
     int32_t threshold;
     int servoPos;
+    double incHigh;
+    double incLow;
 
     //Motors
     Servo myservo;
@@ -55,6 +57,9 @@ class MuscleMotor {
     
   
   public:
+    // Variables
+    boolean useCalSequence = false;
+    
     // Constructor(s)
     MuscleMotor();   
 
@@ -67,6 +72,9 @@ class MuscleMotor {
     int32_t getThreshold();
     Servo getLeftMotor();
     Servo getRightMotor();  
+
+    // Setup functions
+    void setUpThreshold(boolean);
 };
 
 //---------------------Instantiate necessary classes---------------------//
@@ -90,11 +98,34 @@ MuscleMotor::MuscleMotor()
 
 void MuscleMotor::setThreshold(int32_t threshold)
 {
-  this->threshold = threshold;
+  if(this->useCalSequence){
+    int32_t normalizedThreshold = threshold - 512;
+  
+    if(normalizedThreshold > 0){
+      this->threshold = g_baseThreshold + (int32_t) (this->incHigh * normalizedThreshold);
+    } else {
+      this->threshold = g_baseThreshold + (int32_t) (this->incLow * normalizedThreshold);
+    }
+  } else {
+    this->threshold = threshold;
+  }
+  
 }
 
 int32_t MuscleMotor::getThreshold(){
   return this->threshold;
+}
+
+void MuscleMotor::setUpThreshold(boolean useCalSequence){
+  // Call this function after the emg's are calibrated, and 
+  // g_maxThreshold and g_baseThreshold are set
+  if(useCalSequence){
+    this->incHigh = (g_maxThreshold - g_baseThreshold) / (double) 512;
+    this->incLow = g_baseThreshold / (double) 512;
+    this->useCalSequence = true;
+  } else {
+    this->useCalSequence = false;
+  }
 }
 
 Servo MuscleMotor::getLeftMotor(){
@@ -241,7 +272,20 @@ void setup() {
   pinMode(BatteryLevelLEDG, OUTPUT);
   pinMode(BatteryLevelLEDB, OUTPUT);
 
+  //Calibration stuff
+  delay(500);
+  
+  //Always run this, as it normalizes emg readings to 0 (ie: no flex ---> reading of 0)
   HandEmg->emgCal();
+  
+  //If threshold is all the way down, run full calibration sequence
+  if(analogRead(thresholdPot) < 3){
+    HandEmg->calibrationSequence();
+    mm->setUpThreshold(true);
+  } else {
+    mm->setUpThreshold(false);
+  }
+  
 
   // Initialize Serial monitor/plotter
   Serial.begin(9600);

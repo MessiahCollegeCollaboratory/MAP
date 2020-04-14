@@ -26,3 +26,7 @@ const int BatteryLevelLEDB = 3;
 const int led = 7; //---------------------> Testing LED
 const int servoLeft = 10;
 const int servoRight = 11;
+
+// Globals
+int32_t g_baseThreshold = 512;
+int32_t g_maxThreshold = 1023;

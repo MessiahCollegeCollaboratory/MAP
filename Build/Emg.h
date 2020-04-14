@@ -9,4 +9,5 @@ class Emg {
     void emgCal();
     int32_t getEmgValue();
     int32_t getEmgAvg();
+    void calibrationSequence();
 };

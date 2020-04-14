@@ -25,3 +25,7 @@ extern const int BatteryLevelLEDB;
 extern const int led; //---------------------> Testing LED
 extern const int servoLeft;
 extern const int servoRight;
+
+// Globals
+extern int32_t g_baseThreshold;
+extern int32_t g_maxThreshold;
